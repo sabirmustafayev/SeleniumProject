@@ -67,8 +67,9 @@ public class VerifyLogin {
         driver.findElement(By.id("prependedInput")).sendKeys("user48");
         driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123");
         WebElement click = driver.findElement(By.name("_submit"));
+        click.submit();
         BrowserUtils.wait(2);
-        System.out.println(click.getText());
+
         String finalUrl = driver.getCurrentUrl();
         String expected = "https://qa2.vytrack.com/";
 
