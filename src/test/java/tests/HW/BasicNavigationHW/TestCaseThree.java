@@ -1,4 +1,4 @@
-package tests.HW;
+package tests.HW.BasicNavigationHW;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

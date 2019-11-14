@@ -20,8 +20,8 @@ private WebDriver driver;
     public void verifyButton1(){
         driver.findElement(By.xpath("//*[text()='Button 1']")).click();
         String actualResult = driver.findElement(By.cssSelector("#result")).getText();
-        String expectedresult ="Clicked on button one!";
-        Assert.assertEquals(actualResult,expectedresult,"Result is wrong");
+        String expectedResult ="Clicked on button one!";
+        Assert.assertEquals(actualResult,expectedResult,"Result is wrong");
     }
     @Test
     public void verifyButton2(){
