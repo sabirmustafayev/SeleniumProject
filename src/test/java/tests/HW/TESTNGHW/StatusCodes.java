@@ -19,28 +19,23 @@ public class StatusCodes {
         driver.get("https://practice-cybertekschool.herokuapp.com/");
         driver.findElement(By.linkText("Status Codes")).click();
     }
+
     @DataProvider(name = "testData")
-    public static Object [] testData(){
-        return new Object [] {"200","301","404","500"};
+    public static Object[] testData() {
+        return new Object[]{"200", "301", "404", "500"};
     }
 
     @Test(dataProvider = "testData")
-    public void StatusCodes(String errorCode){
-        WebElement codeNumber= driver.findElement(By.linkText(errorCode));
+    public void StatusCodes(String errorCode) {
+        WebElement codeNumber = driver.findElement(By.linkText(errorCode));
         codeNumber.click();
         WebElement result = driver.findElement(By.xpath("//p"));
-        Assert.assertTrue(result.getText().contains(errorCode),"Wrong Error code");
+        Assert.assertTrue(result.getText().contains(errorCode), "Wrong Error code");
         driver.findElement(By.linkText("here")).click();
-
     }
 
-
-
-
-
-
     @AfterMethod
-    public void tearDown(){
+    public void tearDown() {
         driver.quit();
     }
 }
