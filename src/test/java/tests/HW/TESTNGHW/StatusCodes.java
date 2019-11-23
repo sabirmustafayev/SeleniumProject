@@ -20,17 +20,21 @@ public class StatusCodes {
         driver.findElement(By.linkText("Status Codes")).click();
     }
 
+    //Array of different Status Codes
     @DataProvider(name = "testData")
     public static Object[] testData() {
         return new Object[]{"200", "301", "404", "500"};
     }
 
-    @Test(dataProvider = "testData")
+    @Test(dataProvider = "testData")//  (description= "Verify that the correct status code messages displayed")
     public void StatusCodes(String errorCode) {
+        //Click Error code
         WebElement codeNumber = driver.findElement(By.linkText(errorCode));
         codeNumber.click();
+        //Verify the displayed Text
         WebElement result = driver.findElement(By.xpath("//p"));
         Assert.assertTrue(result.getText().contains(errorCode), "Wrong Error code");
+        //Go back to Status Codes Page
         driver.findElement(By.linkText("here")).click();
     }
 
