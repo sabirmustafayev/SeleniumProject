@@ -8,4 +8,13 @@ public class BrowserUtils {
             e.printStackTrace();
         }
     }
+
+
+    public static void verifyEquals(String actual, String expected){
+        if(actual.equals(expected)){
+            System.out.println("Test Passed");
+        }else {
+            System.out.println("Test Failed");
+        }
+    }
 }
