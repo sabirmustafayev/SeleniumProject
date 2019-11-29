@@ -30,8 +30,6 @@ public class CalendarEvents extends IActivies_CalendarEvents {
         WebElement option;
         for (String each : options) {
             option = Driver.get().findElement(By.cssSelector(each));
-            System.out.println(option.getAttribute("href"));
-            System.out.println(option.getText());
             Assert.assertTrue(option.isDisplayed());
         }
     }
