@@ -44,6 +44,13 @@
             <version>3.141.59</version>
         </dependency>
 
+        <!--Report System -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>4.0.9</version>
+        </dependency>
+
     </dependencies>
 
 

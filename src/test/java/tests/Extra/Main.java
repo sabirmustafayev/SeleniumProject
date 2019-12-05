@@ -1,5 +1,10 @@
 package tests.Extra;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.opera.OperaDriver;
+import utils.Driver;
+
 import java.util.Arrays;
 
 public class Main {
