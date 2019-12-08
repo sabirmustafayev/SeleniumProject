@@ -13,7 +13,9 @@ import utils.ConfigurationReader;
 import utils.Driver;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 //this class will be a test foundation for all test classes
 //We will put here only before and after methods
@@ -25,7 +27,9 @@ public abstract class TestBase {
 
     @BeforeTest()
     public void beforeTest(){
-        String filePath = System.getProperty("user.dir")+"/test-output/report.html";
+        SimpleDateFormat df = new SimpleDateFormat("-yyyy-MM-dd-HH-mm");
+        String date = df.format(new Date());
+        String filePath = System.getProperty("user.dir")+"/test-output/report.html"+date;
         extentReports = new ExtentReports();
         extentHtmlReporter =new ExtentHtmlReporter(filePath);
        extentReports.attachReporter(extentHtmlReporter);
