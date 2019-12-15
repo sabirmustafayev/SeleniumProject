@@ -7,16 +7,14 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import utils.BrowserUtils;
 import utils.ConfigurationReader;
-import utils.Driver;
+
+import utils.Driver2;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
-//this class will be a test foundation for all test classes
-//We will put here only before and after methods
-public abstract class TestBase {
+public class TestBase2 {
 
     protected static ExtentReports extentReports;
     protected static ExtentHtmlReporter extentHtmlReporter;
@@ -25,7 +23,7 @@ public abstract class TestBase {
     @BeforeTest()
     @Parameters({"test","env_url"})
     public void beforeTest(@Optional String test, @Optional String env_url){
-       String reportName="report";
+        String reportName="report";
         if(test != null){
             reportName = test;
         }
@@ -34,15 +32,15 @@ public abstract class TestBase {
         String filePath = System.getProperty("user.dir")+"/test-output/report"+reportName+".html";
         extentReports = new ExtentReports();
         extentHtmlReporter =new ExtentHtmlReporter(filePath);
-       extentReports.attachReporter(extentHtmlReporter);
-       extentHtmlReporter.config().setReportName("Vytrack Test Results");
-       String env = ConfigurationReader.getProperty("url");
-       if(env_url != null){
-           env =env_url;
-       }
-       extentReports.setSystemInfo("Environment", env);
-       extentReports.setSystemInfo("Browser", ConfigurationReader.getProperty("browser"));
-       extentReports.setSystemInfo("OS", System.getProperty("os.name"));
+        extentReports.attachReporter(extentHtmlReporter);
+        extentHtmlReporter.config().setReportName("Vytrack Test Results");
+        String env = ConfigurationReader.getProperty("url");
+        if(env_url != null){
+            env =env_url;
+        }
+        extentReports.setSystemInfo("Environment", env);
+        extentReports.setSystemInfo("Browser", ConfigurationReader.getProperty("browser"));
+        extentReports.setSystemInfo("OS", System.getProperty("os.name"));
     }
 
     @AfterTest
@@ -53,11 +51,12 @@ public abstract class TestBase {
     @BeforeMethod
     @Parameters("env_url")
     public void setUp(@Optional String env_url){
+        Driver2.intiDriver();
         String url = ConfigurationReader.getProperty("url");
         if(env_url != null){
             url= env_url;
         }
-        Driver.get().get(url);
+        Driver2.getDriver2().get(url);
         //Driver.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
@@ -69,13 +68,18 @@ public abstract class TestBase {
             try {
                 extentTest.addScreenCaptureFromPath(BrowserUtils.getScreenshot(result.getName()));
             } catch (IOException e) {
-                 e.printStackTrace();
+                e.printStackTrace();
             }
         }else if(result.getStatus()==ITestResult.SKIP){
             extentTest.skip("Test case was skipped: " + result.getName());
         }
-        Driver.close();
+
+        Driver2.closeDriver2();
     }
 
+    @AfterSuite
+    public void afterSuite(){
+        Driver2.shutDownDrivers();
+    }
 
 }

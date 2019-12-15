@@ -28,6 +28,12 @@ public class CreateCarPage extends BasePage {
     @FindBy(name = "custom_entity_type[Logo][file]")
     public WebElement logoElement;
 
+    @FindBy(name ="custom_entity_type[ModelYear]")
+    public WebElement modelElement;
+
+    @FindBy(name ="custom_entity_type[Color]")
+    public WebElement colorElement;
+
 
     //This method is to select tags
     //Provide tag name to select

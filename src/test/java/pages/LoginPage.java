@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.BrowserUtils;
 import utils.Driver;
 
 import java.util.concurrent.TimeUnit;
@@ -35,10 +36,15 @@ public class LoginPage extends BasePage {
         userNameInput.sendKeys(username);
         passwordInput.sendKeys(password, Keys.ENTER);
         Driver.get().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
  //       this.waitUntilLoaderMaskDisappear();
-        WebDriverWait wait = new WebDriverWait(Driver.get(),10);
-        WebElement loaderMask = Driver.get().findElement(By.cssSelector("div[class='loader-mask shown']"));
-        wait.until(ExpectedConditions.invisibilityOf(loaderMask));
+       try {
+           WebDriverWait wait = new WebDriverWait(Driver.get(), 10);
+           WebElement loaderMask = Driver.get().findElement(By.cssSelector("div[class='loader-mask shown']"));
+           wait.until(ExpectedConditions.invisibilityOf(loaderMask));
+       }catch(Exception e){
+
+       }
 
     }
 }

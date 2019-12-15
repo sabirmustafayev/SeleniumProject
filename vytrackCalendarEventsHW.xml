@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Vytrack Calendar Events Test">
+    <test name="Vytrack Calendar Events Test">
+        <parameter name="test" value="calendar_events_test"/>
+        <parameter name="env_url" value="https://qa1.vytrack.com/user/login"/>
+        <packages>
+            <package name="tests.HW.Version2_VytractCalendarEvents"/>
+        </packages>
+    </test>
+</suite>

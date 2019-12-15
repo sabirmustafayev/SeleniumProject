@@ -9,13 +9,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.BrowserUtils;
-import utils.Driver;
 
-// Everything common in pages can go here
-// Top menu elements don't belong to any page so we can keep them here
-public abstract class BasePage {
+import utils.Driver2;
 
-
+public class BasePage2 {
 
     @FindBy(css = "div[class='loader-mask shown']")
     private WebElement loaderMask;
@@ -32,12 +29,12 @@ public abstract class BasePage {
     @FindBy(linkText = "My User")
     private WebElement myUser;
 
-    public BasePage() {
-        PageFactory.initElements(Driver.get(),this);
+    public BasePage2() {
+        PageFactory.initElements(Driver2.getDriver2(),this);
 
     }
     public boolean waitUntilLoaderMaskDisappear(){
-        WebDriverWait wait=wait= new WebDriverWait(Driver.get(),3);
+        WebDriverWait wait=wait= new WebDriverWait(Driver2.getDriver2(),3);
         //wait.until(ExpectedConditions.visibilityOf(loaderMask));
         try {
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div[class ='loader-mask shown']")));
@@ -55,22 +52,22 @@ public abstract class BasePage {
     }
 
     public void navigateTo(String moduleName, String subModuleName){
-        WebDriverWait wait=wait= new WebDriverWait(Driver.get(),10);
+        WebDriverWait wait=wait= new WebDriverWait(Driver2.getDriver2(),10);
         String moduleLocator = "//*[normalize-space()='"+moduleName+"' and @class='title title-level-1']";
         String subModuleLocator="//*[normalize-space()='"+subModuleName+"' and @class='title title-level-2']";
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(moduleLocator)));
 
-        WebElement module = Driver.get().findElement(By.xpath(moduleLocator));
-        WebElement subModule = Driver.get().findElement(By.xpath(subModuleLocator));
+        WebElement module = Driver2.getDriver2().findElement(By.xpath(moduleLocator));
+        WebElement subModule = Driver2.getDriver2().findElement(By.xpath(subModuleLocator));
 
         wait.until(ExpectedConditions.visibilityOf(module));
         wait.until(ExpectedConditions.elementToBeClickable(module));
-       module.click();
+        module.click();
 
         wait.until(ExpectedConditions.visibilityOf(subModule));
         wait.until(ExpectedConditions.elementToBeClickable(subModule));
-       subModule.click();
-       BrowserUtils.waitForPageToLoad(15);
+        subModule.click();
+        BrowserUtils.waitForPageToLoad(15);
     }
 
     public String getPageSubTitle() {

@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Regression">
+<!--    <test name="Login Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.Vytrack.LoginTests"/>-->
+<!--            <class name="tests.Vytrack.NEWCalendarEventTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="Calendar Events Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.Vytrack.NEWCalendarEventTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+        <test name="Vytrack regression test">
+            <parameter name="test" value="regression"/>
+            <packages>
+                <package name="tests.Vytrack"/>
+                
+            </packages>
+            
+        </test>
+
+</suite>
