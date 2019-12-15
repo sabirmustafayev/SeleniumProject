@@ -12,10 +12,11 @@ import utils.Driver;
 import utils.Pages;
 
 public class AllTests extends TestBase {
-        private  Pages pages = new Pages();
+
 
     @Test(description = "Verify that 'view', 'edit' and 'delete' options are available for each calendar event")
     public void test1(){
+            Pages pages = new Pages();
         pages.loginPage().Login("storemanager85","UserUser123");
         pages.loginPage().navigateTo("Activities","Calendar Events");
         pages.loginPage().waitUntilLoaderMaskDisappear();
@@ -33,16 +34,13 @@ public class AllTests extends TestBase {
 
     @Test(description = "Verify that title column is displayed")
     public void testCase2() {
+        Pages pages = new Pages();
         pages.loginPage().Login("storemanager85","UserUser123");
         pages.loginPage().navigateTo("Activities","Calendar Events");
         pages.loginPage().waitUntilLoaderMaskDisappear();
 
         pages.calendarEventPage().gridOptionsElement.click();
         pages.calendarEventPage().gridOptionsDeSelectAllExcept("Title");
-
-
-
-
 
     }
 
